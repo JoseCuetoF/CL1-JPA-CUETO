@@ -1,4 +1,4 @@
-package pe.edu.i202221113.crud;
+package pe.edu.i202221113.utiles;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,14 +13,12 @@ import java.util.List;
 
 public class JPAPersist {
 
-
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("world");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-
 
         Country paisImaginario = new Country();
         paisImaginario.setCode("FNT");
@@ -43,14 +41,13 @@ public class JPAPersist {
         City cB = new City("CiudadBeta", paisImaginario, "DistritoDos", 250000);
         City cC = new City("CiudadGamma", paisImaginario, "DistritoTres", 150000);
 
-
-        CountryLanguage idiPrimario = new CountryLanguage(new CountryLanguagePk("FNT", "Fantasiano"), "R", 75.0, paisImaginario);
+        CountryLanguage idiPrimario = new CountryLanguage(new CountryLanguagePk("FNT", "Fantasiano"), "T", 26.0, paisImaginario);
         CountryLanguage idiSecundario = new CountryLanguage(new CountryLanguagePk("FNT", "Antiguo"), "F", 25.0, paisImaginario);
 
         paisImaginario.setCities(List.of(cA, cB, cC));
         paisImaginario.setLanguages(List.of(idiPrimario, idiSecundario));
 
-
+        em.persist(paisImaginario);
         em.getTransaction().commit();
         em.close();
     }

@@ -1,4 +1,4 @@
-package pe.edu.i202221113.crud;
+package pe.edu.i202221113.utiles;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -16,18 +16,12 @@ public class JPARemove {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        // Buscar el país por su código (en este caso, 'PER')
-        Country country = em.find(Country.class, "PER");  // Suponiendo que 'PER' es el código del país
 
-
-
-
+        Country country = em.find(Country.class, "FNT");
 
         em.remove(country);
-        em.getTransaction().commit(); // Confirmar la transacción
+        em.getTransaction().commit();
         em.close();
-
-
 
 
 
